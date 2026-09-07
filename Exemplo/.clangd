@@ -1,0 +1,2 @@
+CompileFlags:
+  Remove: [-m*, -fno-tree-switch-conversion, -mlongcalls, -fstrict-volatile-bitfields]
