@@ -87,34 +87,6 @@ Robo meuRobo;void setup() {
 ```
 - Desafio Prático: Peça para os alunos alterarem a classe filha de LED para criar um LedFade (que faz o brilho pulsar suavemente via PWM usando canais LEDC do ESP32) e peça para adicionarem ao array polimórfico do robô. Se o design foi bem feito, eles não precisarão alterar o main.cpp.
 
-### Módulo 5: Injeção de Dependências e Princípios SOLID (1 hora)
-- Objetivo: Mostrar como construir um código altamente modular, fácil de modificar e testar (foco no 'D' de Inversão de Dependência do SOLID).
-
-    - O Problema: Atualmente, a classe Robo instancia os motores diretamente em seu interior. Se amanhã decidirmos trocar o shield de motores L298N por um driver Ponte H diferente, teríamos que alterar o código principal do Robô.
-    
-    - Conceito 5: Injeção de Dependência e Interfaces:
-    
-    - A Prática: Criar uma interface (uma classe base abstrata) chamada IMotor, com métodos puramente virtuais como frente() e parar().
-    
-    - Em vez da classe Robo criar os motores internamente, o construtor do Robo passa a receber os ponteiros para os motores como parâmetro: Robo(IMotor* esquerdo, IMotor* direito).
-    
-    - Dica didática: Esse é um momento "Mente Explodindo". Explique aos alunos que o robô agora não sabe mais qual hardware está rodando! Isso permite injetar um "MotorSimulado" (Mock) para testar a lógica do robô no computador sem nem precisar de placa ou ESP32.
-
-### Módulo 6: Máquinas de Estado Orientadas a Objetos (State Pattern) (1 hora)
-- Objetivo: Substituir a clássica "sopa de if/else" no Arduino por um sistema de comportamentos limpo e expansível.
-
-    - O Problema: O robô está ganhando sensores (ultrassônico, segue-linha). A lógica central está ficando lotada de condicionais cruzadas para decidir se o robô deve andar, desviar ou parar.
-    
-    - Conceito 6: Padrão de Projeto "State" (Estado):
-    
-    - A Prática: Criar uma classe base chamada EstadoRobo com um método virtual puro executar(Robo* robo).
-    
-    - Criar classes filhas para cada comportamento: EstadoBuscando, EstadoDesviando e EstadoParado.
-    
-    - A classe Robo passa a ter um ponteiro para o Estado atual. A cada ciclo de loop, o Robô apenas chama estadoAtual->executar(this);. O próprio Estado decide a hora de mandar o Robô transitar para o próximo estado.
-    
-    - Dica didática: Mostre como adicionar um comportamento novo (ex: "Dança da Vitória") agora significa apenas criar uma nova classe `EstadoDanca`, sem alterar nenhuma linha de código da lógica existente. Isso prova aos alunos o valor prático de usar padrões de projeto no embarcado.
-
 ### Dicas de Ouro para a Condução
 - Evite a síndrome do quadro em branco: Não faça os alunos digitarem tudo do zero. Forneça um repositório no GitHub com o esqueleto (os .h com as assinaturas já prontas) e foque a aula na implementação (.cpp) e na lógica dos conceitos.
 
