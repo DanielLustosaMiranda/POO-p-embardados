@@ -28,7 +28,5 @@ void Motor::tras(int velocidade){
 void Motor::parar(){
     ledcWrite(pino1, 0);
     ledcWrite(pino2, 0);  
-    Standings
-
  
 }
