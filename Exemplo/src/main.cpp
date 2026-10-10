@@ -7,8 +7,8 @@
 LED ledStatus(2);
 
 // Instancia os motores esquerdo e direito passando apenas os pinos
-Motor motorEsquerdo(13, 12);
-Motor motorDireito(14, 27);
+Motor motorEsquerdo(27, 26);
+Motor motorDireito(33, 25);
 
 // Instancia o Robô passando os objetos dos motores já criados
 Robo meuRobo(motorEsquerdo, motorDireito);
